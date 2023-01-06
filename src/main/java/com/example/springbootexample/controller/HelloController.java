@@ -8,9 +8,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloController {
 
-  @GetMapping("/hello")
+  @GetMapping("/lazyhello")
   ResponseEntity<String> hello() {
-    return new ResponseEntity<>("world", HttpStatus.OK);
+    try {
+      Thread.sleep(5000);
+    } catch (InterruptedException ie) {
+      Thread.currentThread().interrupt();
+    }
+    return new ResponseEntity<>("yawn....hello", HttpStatus.OK);
   }
 
 }
